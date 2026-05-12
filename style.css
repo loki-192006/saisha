@@ -271,14 +271,7 @@ body.cursor-hover .cursor-dot {
   animation: shimmerMove 3.5s infinite linear;
 }
 
-.loader__logo {
-  width: 160px;
-  margin-bottom: 52px;
-  filter: brightness(0) invert(1);
-  opacity: 0;
-  animation: logoReveal 1s 0.3s var(--ease-out) forwards;
-  position: relative; z-index: 2;
-}
+.loader__logo{ width:160px; image-rendering:-webkit-optimize-contrast; image-rendering:crisp-edges; backface-visibility:hidden; transform:translateZ(0); filter: brightness(1.08) contrast(1.12) saturate(1.05); animation:logoReveal 1s ease forwards; }
 
 .loader__bar {
   width: 120px; height: 1px;
@@ -292,7 +285,7 @@ body.cursor-hover .cursor-dot {
   position: absolute;
   inset: 0;
   background: rgba(200,169,107,0.15);
-  filter: blur(2px);
+ 
 }
 .loader__bar span {
   display: block; width: 0; height: 100%;
@@ -312,13 +305,35 @@ body.cursor-hover .cursor-dot {
 }
 
 @keyframes logoReveal {
-  0% { opacity: 0; transform: scale(0.92) translateY(8px); filter: brightness(0) invert(1) blur(2px); }
-  100% { opacity: 1; transform: scale(1) translateY(0); filter: brightness(0) invert(1) blur(0); }
+  0% {
+    opacity: 0;
+    transform: scale(0.92) translateY(8px);
+
+    filter:   filter:
+    brightness(0)
+    invert(77%)
+    sepia(31%)
+    saturate(541%)
+    hue-rotate(4deg)
+    brightness(97%)
+    contrast(91%);
 }
-@keyframes loaderFill { to { width: 100%; } }
-@keyframes shimmerMove { 0% { transform: translate(-30%, -30%); } 100% { transform: translate(30%, 30%); } }
-@keyframes fadeIn { to { opacity: 1; } }
-@keyframes loaderGlow { 0% { opacity: 0.5; transform: scale(0.9); } 100% { opacity: 1; transform: scale(1.1); } }
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+
+    filter: brightness(0)
+            saturate(100%)
+            sepia(45%)
+            saturate(600%)
+            hue-rotate(5deg)
+            brightness(102%)
+            contrast(92%)
+            blur(0);
+  }
+}
 
 
 /* ════════════════════════════════════════
@@ -343,16 +358,19 @@ body.cursor-hover .cursor-dot {
   display: flex; align-items: center; justify-content: space-between;
 }
 
-.navbar__logo {
-  height: 42px;
-  width: auto;
-  object-fit: contain;
-  filter: brightness(0) invert(1);
-  transition: transform .5s var(--ease-out), filter .4s;
-}
+/* ═══════════════════════════════ LOGO 4K ULTRA SHARP FIX ═══════════════════════════════ */ /* NAVBAR LOGO */ .navbar__logo{ height:42px; width:auto; object-fit:contain; /* 4K SHARPNESS */ image-rendering:-webkit-optimize-contrast; image-rendering:crisp-edges; backface-visibility:hidden; transform:translateZ(0); /* CLEAN GOLD */ filter: brightness(1.08) contrast(1.12) saturate(1.05); transition: transform .4s ease, filter .4s ease; will-change:transform; }
 .navbar__brand:hover .navbar__logo {
   transform: scale(1.04);
-  filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(200,169,107,0.4));
+
+  /* GOLD + GLOW */
+  filter: brightness(0)
+          saturate(100%)
+          sepia(45%)
+          saturate(700%)
+          hue-rotate(5deg)
+          brightness(108%)
+          contrast(95%)
+          drop-shadow(0 0 10px rgba(200,169,107,0.45));
 }
 
 .navbar__nav { display: flex; gap: 52px; }
@@ -1503,11 +1521,34 @@ body.cursor-hover .cursor-dot {
   height: 40px;
   width: auto;
   object-fit: contain;
-  filter: brightness(0) invert(1);
-  opacity: 0.7;
+
+  /* GOLD FILTER */
+  filter: brightness(0)
+          saturate(100%)
+          sepia(45%)
+          saturate(600%)
+          hue-rotate(5deg)
+          brightness(102%)
+          contrast(92%);
+
+  opacity: 0.85;
   margin-bottom: 28px;
-  transition: opacity .4s;
+  transition: opacity .4s, filter .4s;
 }
+
+.footer__logo:hover {
+  opacity: 1;
+
+  filter: brightness(0)
+          saturate(100%)
+          sepia(45%)
+          saturate(700%)
+          hue-rotate(5deg)
+          brightness(108%)
+          contrast(95%)
+          drop-shadow(0 0 12px rgba(200,169,107,0.35));
+}
+
 .footer__logo:hover { opacity: 1; }
 
 .footer__tagline {
